@@ -1,5 +1,5 @@
 {
-  "name": "node-web-starter-js",
+  "name": "web-starter",
   "version": "1.0.0",
   "description": "A starter web application for Node.js, with native Javascript",
   "main": "src/server.js",
@@ -9,7 +9,7 @@
     "build": "gulp build",
     "test": "source ./src/config/.env && mocha --recursive test/src"
   },
-  "author": "Moses Wejuli<mwejuli@companieshouse.gov.uk>",
+  "author": "Moses Wejuli <mwejuli@companieshouse.gov.uk>",
   "license": "MIT",
   "dependencies": {
     "babel-eslint": "^8.2.6",
@@ -52,5 +52,17 @@
     "sinon": "6.3.5",
     "sinon-chai": "^3.3.0"
   },
-  "eslintConfig": ".eslintrc"
+  "eslintConfig": ".eslintrc",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/companieshouse/node-review-web-starter-js.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/companieshouse/node-review-web-starter-js/issues"
+  },
+  "homepage": "https://github.com/companieshouse/node-review-web-starter-js#readme"
 }

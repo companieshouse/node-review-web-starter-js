@@ -1,5 +1,5 @@
 
-describe('routes/route-1', () => {
+describe('routes/companyRoute', () => {
 
   let app = require(`${serverRoot}/app`);
 
@@ -15,8 +15,8 @@ describe('routes/route-1', () => {
     done();
   });
 
-  it('should serve up the index page', () => {
-    let slug = '/route-1';
+  it('should serve up the company create page', () => {
+    let slug = '/company/create';
     return request(app)
       .get(slug)
       .then(response => {
@@ -24,8 +24,8 @@ describe('routes/route-1', () => {
       });
   });
 
-  it('should serve up handler-1', () => {
-    let slug = '/route-1/handler-1';
+  it('should serve up the company details page', () => {
+    let slug = '/company/details';
     return request(app)
       .get(slug)
       .then(response => {
@@ -34,7 +34,7 @@ describe('routes/route-1', () => {
   });
 
   it('should fail to serve up an invalid path', () => {
-    let slug = '/route-invalid/handler-invalid';
+    let slug = '/invalid-route/invalid-path';
     return request(app)
       .get(slug)
       .then(response => {

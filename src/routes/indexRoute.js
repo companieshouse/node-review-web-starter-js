@@ -1,11 +1,10 @@
 const router = require('express').Router();
-const homeHandler = './handlers/index/home';
+const HomeHandler = './handlers/index/home';
 
-router.get('/', (req, res, next) => {
-	homeHandler.execute(req, res)
-		.then(viewData => {
-			res.render('index/home', viewData);
-		});
+router.get('/', async (req, res, next) => {
+	const handler = new HomeHandler();
+	const viewData =  await handler.execute(req, res);
+	res.render('index/home', viewData);
 });
 
 module.exports = router;
