@@ -8,7 +8,7 @@ const logger = require(`${serverRoot}/config/winston`);
 class GenericValidator {
 
   constructor() {
-      this.errors = this.getErrorSignature();
+      this.errors = this._getErrorSignature();
       this.errorManifest = ErrorManifest;
   }
 
