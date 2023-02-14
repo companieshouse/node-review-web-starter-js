@@ -27,6 +27,7 @@ class CreateHandler extends GenericHandler {
       }
       if (!savedRequest) {
         this.viewData.errors.serverError = this.errorManifest.generic.serverError;
+        return Promise.reject(this.viewData);
       }
 
       return Promise.resolve(this.viewData);
