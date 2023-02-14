@@ -12,7 +12,7 @@ class ProfileHandler extends GenericHandler {
 
   // use the "execute" method for handler logic
   // use additional support methods for handlers with more complex requirements
-  execute (req, res, method = '') {
+  execute (req, res, method = 'GET') {
     return Promise.resolve(this.viewData);
   }
 
