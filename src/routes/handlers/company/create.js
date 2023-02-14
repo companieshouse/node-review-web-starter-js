@@ -20,7 +20,7 @@ class CreateHandler extends GenericHandler {
 
       const validationErrors = await this.validate(req.body);
 
-      if(!Object.keys(validationErrors).length) {
+      if(!Object.keys(validationErrors.stack).length) {
           this.viewData.errors = validationErrors.stack;
       } else {
         savedRequest = await this.save(req.body);

@@ -1,16 +1,15 @@
 const logger = require("./../../Logger");
 const errorManifest = "./../utils/error_manifests/default";
 
-class UserFormsValidator extends GenericValidator {
+
+class CompanyFormsValidator extends GenericValidator {
 
     constructor() {
-      super();
+        super();
     }
 
-    validateUpdateSettings(payload) {
-        logger.info(`Request to validate update user settings form`);
-        this.errors = this.getErrorSignature();
-        this.payload = payload;
+    validateCreateCompany(payload) {
+        logger.info(`Request to validate create company form`);
 
         try {
             if(typeof payload.email !== 'undefined' && !payload.email.length) {
@@ -33,13 +32,10 @@ class UserFormsValidator extends GenericValidator {
         }
     }
 
-    validateProfileUpdate(payload: any): Promise<any> {
+    validateSaveDetails(payload) {
 
     }
 
-    validateRegistration(payload: any): Promise<any> {
-
-    }
 };
 
-module.exports = UserFormsValidator;
+module.exports = CompanyFormsValidator;
