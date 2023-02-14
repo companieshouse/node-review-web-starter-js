@@ -17,7 +17,9 @@ class CreateHandler extends GenericHandler {
   // process request here and return data for the view
   async execute (req, res, method = 'GET') {
       logger.info(`${method} request for to create a company `);
+
       try {
+        
             if (method !== 'POST') {
                 return this.viewData;
             }
