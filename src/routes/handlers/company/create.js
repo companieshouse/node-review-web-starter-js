@@ -1,26 +1,24 @@
-const logger = require("./../../../lib/Logger");
-const GenericHandler = require('./../generic');
+const logger = require("./../../../config/winston");
+const GenericHandler = require("./../generic");
 const CompanyFormsValidator = require("./../../../lib/validation/formValidators/company");
 
 class CreateHandler extends GenericHandler {
+    constructor () {
+        super();
+        this.validator = new CompanyFormsValidator();
+        this.viewData = {
+            title: "Create handler for company route",
+            sampleKey: "sample value",
+            errors: {}
+        };
+    }
 
-  constructor() {
-    super();
-    this.validator = new CompanyFormsValidator();
-    this.viewData = {
-         title: 'Create handler for company route',
-         sampleKey:"sample value",
-         errors: {},
-     };
-  }
+    // process request here and return data for the view
+    async execute (req, res, method = "GET") {
+        logger.info(`${method} request for to create a company `);
 
-  // process request here and return data for the view
-  async execute (req, res, method = 'GET') {
-      logger.info(`${method} request for to create a company `);
-
-      try {
-        
-            if (method !== 'POST') {
+        try {
+            if (method === "GET") {
                 return this.viewData;
             }
 
@@ -37,16 +35,16 @@ class CreateHandler extends GenericHandler {
             this.viewData.errors.serverError = this.errorManifest.generic.serverError;
             return this.viewData;
         }
-  }
+    }
 
-  // call service(s) to save data here
-  save(payload) {
-    return Promise.resolve(true);
-  }
+    // call service(s) to save data here
+    save (payload) {
+        return Promise.resolve(true);
+    }
 
-  supportMethod() {
+    supportMethod () {
 
-  }
+    }
 }
 
 module.exports = CreateHandler;

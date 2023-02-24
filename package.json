@@ -7,7 +7,13 @@
     "start": "source ./src/config/.env && gulp build && node server.js",
     "watch": "source ./src/config/.env && nodemon -e js,json,html,njk --watch ./src --config ./config/nodemon.json .src/server.js",
     "build": "gulp build",
-    "test": "source ./src/config/.env && mocha --recursive test/src"
+    "test": "source ./src/config/.env && mocha --recursive test/src",
+    "test:watch": "source ./src/config/.env && mocha --recursive --watch --reporter nyan test/src",
+    "coverage": "nyc --check-coverage --reporter=text-summary npm run test",
+    "coverage:report": "nyc --reporter=lcov --reporter=text npm run test",
+    "test:coverage": "nyc npm test",
+    "lint": "eslint 'src/*.js' 'src/**/*.js' 'test/*.js' 'test/**/*.js'",
+    "lint:fix": "eslint 'src/*.js' 'src/**/*.js' 'test/*.js' 'test/**/*.js' --fix"
   },
   "author": "Moses Wejuli <mwejuli@companieshouse.gov.uk>",
   "license": "MIT",
@@ -47,10 +53,16 @@
     "gulp-sass": "3.2.1",
     "gulp-shell": "^0.6.5",
     "gulp-uglify": "^3.0.2",
+    "husky": "^8.0.3",
     "mocha": "^4.1.0",
     "pre-commit": "^1.2.2",
     "sinon": "6.3.5",
     "sinon-chai": "^3.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && npm run lint"
+    }
   },
   "eslintConfig": ".eslintrc",
   "directories": {

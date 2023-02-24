@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
-const sinon = require('sinon');
-const chai = require('chai');
+const path = require("path");
+const sinon = require("sinon");
+const chai = require("chai");
 const should = chai.should();
-const chaiHttp = require('chai-http');
+const chaiHttp = require("chai-http");
 const chaiAsPromised = require("chai-as-promised");
-const sinonChai = require('sinon-chai');
-const expect = require('chai').expect;
-
+const sinonChai = require("sinon-chai");
+const expect = require("chai").expect;
 
 chai.use(chaiAsPromised);
 chai.use(chaiHttp);
@@ -22,5 +22,5 @@ global.expect = expect;
 global.request = chai.request;
 
 global.testRoot = __dirname;
-global.appRoot = __dirname + './../app';
-global.serverRoot = __dirname + './../server';
+global.appRoot = path.join(__dirname, "./../app");
+global.serverRoot = path.join(__dirname, "./../src");

@@ -1,18 +1,17 @@
-const logger = require("./../../Logger");
-const errorManifest = "./../utils/error_manifests/default";
-
+const logger = require("./../../../config/winston");
+const GenericValidator = require("./..");
 
 class CompanyFormsValidator extends GenericValidator {
-
-    constructor() {
+    constructor (classProperty = {}) {
         super();
+        this.classProperty = classProperty;
     }
 
-    validateCreateCompany(payload) {
+    validateCreateCompany (payload) {
         logger.info(`Request to validate create company form`);
 
         try {
-            if(typeof payload.email !== 'undefined' && !payload.email.length) {
+            if (typeof payload.email !== "undefined" && !payload.email.length) {
                 this.errors.stack.email = this.errorManifest.validation.email.blank;
             } else if (this.isValidEmail(payload.email)) {
                 this.errors.stack.email = this.errorManifest.validation.email.incorrect;
@@ -21,7 +20,7 @@ class CompanyFormsValidator extends GenericValidator {
             // validate additional fields in payload here, adding to error object as and when validation fails
 
             // finally, check if all fields validated correctly, or if one or more of them failed
-            if(!Object.keys(this.errors.stack).length) {
+            if (!Object.keys(this.errors.stack).length) {
                 return Promise.resolve(true);
             } else {
                 return Promise.reject(this.errors);
@@ -32,10 +31,9 @@ class CompanyFormsValidator extends GenericValidator {
         }
     }
 
-    validateSaveDetails(payload) {
+    validateSaveDetails (payload) {
 
     }
-
 };
 
 module.exports = CompanyFormsValidator;
