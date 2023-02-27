@@ -34,11 +34,11 @@ class UserFormsValidator extends GenericValidator {
         }
     }
 
-    validateProfileUpdate (payload: any): Promise<any> {
+    validateProfileUpdate (payload) {
 
     }
 
-    validateRegistration (payload: any): Promise<any> {
+    validateRegistration (payload) {
 
     }
 };
