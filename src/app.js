@@ -32,7 +32,7 @@ njk.express(app);
 app.set("view engine", "njk");
 
 // serve static files
-app.use(express.static(path.join(__dirname, "/../app/public")));
+app.use(express.static(path.join(__dirname, "/../assets/public")));
 // app.use('/assets', express.static('./../node_modules/govuk-frontend/govuk/assets'))
 
 // parse body into req.body
