@@ -4,7 +4,7 @@
   "description": "A starter web application for Node.js, with native Javascript",
   "main": "src/server.js",
   "scripts": {
-    "start": "source ./src/config/.env && gulp build && node server.js",
+    "start": "source ./src/config/.env && gulp build && node src/server.js",
     "watch": "source ./src/config/.env && nodemon -e js,json,html,njk --watch ./src --config ./config/nodemon.json .src/server.js",
     "build": "gulp build",
     "test": "source ./src/config/.env && mocha --recursive test/src",
