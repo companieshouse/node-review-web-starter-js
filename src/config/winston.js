@@ -16,7 +16,7 @@ const options = {
             winston.format.timestamp(),
             winston.format.simple(),
             winston.format.printf(msg => {
-                const {timestamp, level, message, ...args} = msg;
+                const { timestamp, level, message, ...args } = msg;
                 return `${timestamp.substr(0, 19)} - ${level}: ${message} ${Object.keys(args).length ? "-" + JSON.stringify(args, null, 2) : ""}`;
             })
         )
@@ -37,7 +37,7 @@ const options = {
 };
 
 // instantiate a new Winston Logger with the settings defined above
-let logger = winston.createLogger({
+const logger = winston.createLogger({
     transports: [
         new winston.transports.File(options.file),
         new winston.transports.Console(options.console)

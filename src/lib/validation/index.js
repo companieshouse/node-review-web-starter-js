@@ -14,7 +14,7 @@ class GenericValidator {
     _getErrorSignature () {
         return {
             status: 400,
-            code: "VALIDATION_ERRORS",
+            name: "VALIDATION_ERRORS",
             message: this.errorManifest.validation.default.summary,
             stack: {}
         };
@@ -22,8 +22,26 @@ class GenericValidator {
 
     isValidEmail (email) {
         logger.info(`Request to validate email: ${email}`);
-        const regex = "/^[email_regex]$/ig";
+        const regex = /^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*@[a-zA-Z](-?[a-zA-Z0-9])*(\.[a-zA-Z](-?[a-zA-Z0-9])*)+$/ig;
         if (regex.test(email)) {
+            return true;
+        }
+        return false;
+    }
+
+    isValidCompanyName (companyName) {
+        logger.info(`Request to validate company name: ${companyName}`);
+        // eslint-disable-next-line
+        const regex = /^[a-z\d\_-][a-z\d\_\-\.\s\&]{1,71}$/ig;
+        if (regex.test(companyName)) {
+            return true;
+        }
+        return false;
+    }
+
+    isValidDescription (description) {
+        logger.info(`Request to validate description`);
+        if (description.length > 0 || description.length < 121) {
             return true;
         }
         return false;

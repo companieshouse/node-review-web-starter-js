@@ -9,14 +9,14 @@ class UserFormsValidator extends GenericValidator {
     }
 
     validateUpdateSettings (payload) {
-        logger.info(`Request to validate update user settings form`);
+        logger.info(`Request to validate update user settings payload`);
         this.errors = this.getErrorSignature();
         this.payload = payload;
 
         try {
             if (typeof payload.email !== "undefined" && !payload.email.length) {
                 this.errors.stack.email = this.errorManifest.validation.email.blank;
-            } else if (this.isValidEmail(payload.email)) {
+            } else if (!this.isValidEmail(payload.email)) {
                 this.errors.stack.email = this.errorManifest.validation.email.incorrect;
             }
 

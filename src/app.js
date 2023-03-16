@@ -8,21 +8,19 @@ const bodyParser = require("body-parser");
 const logger = require("./config/winston");
 const app = express();
 global.appRoot = __dirname;
-const util = require("./routes/__utils");
 
 // log requests
 app.use(morgan("combined"));
 
 // views path + engine set-up
-app.set("views", path.join(__dirname, "/views"));
-// app.set('views', [
-//   __dirname + '/views',
-//   __dirname + '/../node_modules/govuk-frontend'
-// ]);
+app.set("views", [
+    path.join(__dirname, "views"),
+    path.join(__dirname, "../../node_modules/govuk-frontend")
+]);
 
 const nunjucksLoaderOpts = {
-    "watch": process.env.NUNJUCKS_LOADER_WATCH !== "false",
-    "noCache": process.env.NUNJUCKS_LOADER_NO_CACHE !== "true"
+    watch: process.env.NUNJUCKS_LOADER_WATCH !== "false",
+    noCache: process.env.NUNJUCKS_LOADER_NO_CACHE !== "true"
 };
 const njk = new nunjucks.Environment(
     new nunjucks.FileSystemLoader(app.get("views"),
@@ -31,33 +29,38 @@ const njk = new nunjucks.Environment(
 njk.express(app);
 app.set("view engine", "njk");
 
+njk.addGlobal("cdnUrlCss", process.env.CDN_URL_CSS);
+njk.addGlobal("cdnUrlJs", process.env.CDN_URL_JS);
+njk.addGlobal("cdnHost", process.env.CDN_HOST);
+njk.addGlobal("chsUrl", process.env.CHS_URL);
+
 // serve static files
 app.use(express.static(path.join(__dirname, "/../assets/public")));
-// app.use('/assets', express.static('./../node_modules/govuk-frontend/govuk/assets'))
+// app.use("/assets", express.static("./../node_modules/govuk-frontend/govuk/assets"));
 
 // parse body into req.body
 app.use(bodyParser.json()); // for parsing application/json
 app.use(cookieParser());
 
 // Channel all requests through the router
-require("./router")(app);
+require("./router.dispatch")(app);
 
 // unhandled errors
 app.use((err, req, res, next) => {
-    let status = err.status || 500;
+    const status = err.status || 500;
     logger.error(`${status} - appError: ${err.stack}`);
 });
 
 // unhandled exceptions - ideally, should never get to this point
 process.on("uncaughtException", err => {
-    let status = err.status || 500;
+    const status = err.status || 500;
     logger.error(`${status} - uncaughtException: ${err.stack}`);
     process.exit(1);
 });
 
 // unhandled promise rejections
 process.on("unhandledRejection", err => {
-    let status = err.status || 500;
+    const status = err.status || 500;
     logger.error(`${status} - unhandledRejection: ${err.stack}`);
     process.exit(1);
 });
