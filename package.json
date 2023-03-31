@@ -5,15 +5,15 @@
   "main": "src/server.js",
   "scripts": {
     "build": "gulp build",
-    "lint": "eslint 'src/*.js' 'src/**/*.js' 'test/*.js' 'test/**/*.js'",
-    "lint:fix": "eslint 'src/*.js' 'src/**/*.js' 'test/*.js' 'test/**/*.js' 'gulpfile.js' --fix",
+    "lint": "eslint 'src/*.js' 'src/**/*.js' 'test/src/*.js' 'test/src/**/*.js'",
+    "lint:fix": "eslint 'src/*.js' 'src/**/*.js' 'test/src/*.js' 'test/src/**/*.js' 'gulpfile.js' --fix",
     "coverage": "nyc --check-coverage --reporter=text-summary npm run test",
     "coverage:report": "nyc --reporter=lcov --reporter=text npm run test",
     "test:coverage": "nyc npm test",
     "test": "source ./src/config/.env && mocha --recursive test/src",
     "test:watch": "source ./src/config/.env && mocha --recursive --watch --reporter nyan test/src",
     "start": "source ./src/config/.env && gulp build && node src/server.js",
-    "start:watch": "source ./src/config/.env && npm run build && nodemon"
+    "start:watch": "nodemon"
   },
   "husky": {
     "hooks": {
@@ -27,9 +27,9 @@
     "body-parser": "1.18.3",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
+    "govuk_frontend_toolkit": "^9.0.1",
     "govuk-elements-sass": "^3.1.3",
     "govuk-frontend": "^4.5.0",
-    "govuk_frontend_toolkit": "^9.0.1",
     "moment": "2.24.0",
     "moment-timezone": "^0.5.23",
     "morgan": "^1.9.0",
@@ -37,8 +37,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.0",
-    "@babel/eslint-parser": "^7.19.1",
+    "babel-eslint": "^10.1.0",
     "chai": "^4.0.0",
     "chai-as-promised": "^7.1.1",
     "chai-http": "^4.2.1",
@@ -54,11 +53,15 @@
     "gulp-sass": "^5.1.0",
     "gulp-uglify": "^3.0.2",
     "husky": "^4.3.8",
-    "mocha": "^4.1.0",
+    "mocha": "^10.2.0",
     "nodemon": "^1.14.11",
     "sass": "^1.59.2",
-    "sinon": "6.3.5",
-    "sinon-chai": "^3.3.0"
+    "sinon": "9.0.2",
+    "sinon-chai": "3.5.0"
+  },
+  "overrides": {
+    "chokidar": "3.5.3",
+    "glob-parent": "6.0.2"
   },
   "eslintConfig": ".eslintrc",
   "repository": {
