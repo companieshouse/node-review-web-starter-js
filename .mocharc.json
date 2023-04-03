@@ -1,0 +1,5 @@
+{
+  "file": ["test/src/setup.js"],
+  "spec": "test/src/**/*.test.js",
+  "timeout": 6000
+}

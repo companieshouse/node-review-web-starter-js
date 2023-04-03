@@ -40,6 +40,7 @@ app.use(express.static(path.join(__dirname, "/../assets/public")));
 
 // parse body into req.body
 app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Channel all requests through the router
@@ -49,6 +50,7 @@ require("./router.dispatch")(app);
 app.use((err, req, res, next) => {
     const status = err.status || 500;
     logger.error(`${status} - appError: ${err.stack}`);
+    res.render("partials/error_500");
 });
 
 // unhandled exceptions - ideally, should never get to this point

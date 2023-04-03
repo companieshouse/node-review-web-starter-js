@@ -2,6 +2,8 @@
 
 This web-starter is designed to allow you to very quickly create a GOV_UK web app using Node.js. It provides you with the essential building blocks (or scaffolding) for piecing together a Node.js web app and to dictate your overall project structure.
 
+A corresponding web-starter, using Typescript, can be found [here](https://github.com/companieshouse/node-review-web-starter-ts).
+
 #### Super Quick Note:
 
 There's a **To-do** list at the bottom of this document. Please take a moment to have a quick look at what remains to be done,  and feel free to complete one or more items on this list or add items to it that you feel were omitted, or would be useful to have.
@@ -134,5 +136,7 @@ Empty directories and files, wherever you find them, are only there for complete
 - [x] Include sample page displays on start-up with CH headers, CH footers and GOV_UK error flows
 - [x] Include sample page displays on start-up with CH headers, CH footers and GOV_UK error flows
 - [ ] Bump up test coverage to meet set thresholds
+- [ ] Resolve all vulnerability warnings and errors flagged by `npm audit`
+- [ ] Upgrade to Node v18 at appropriate time
 - [ ] Resolve the `ESLINT_LEGACY_OBJECT_REST_SPREAD` deprecation warning when linting
 - [ ] Squelch SASS compilation deprecation warnings coming from the `govuk-frontend` toolkit. These deprecation warnings are a known issue [here](https://github.com/alphagov/govuk-frontend/issues/2238).
