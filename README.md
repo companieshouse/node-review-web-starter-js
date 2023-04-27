@@ -136,7 +136,8 @@ Empty directories and files, wherever you find them, are only there for complete
 - [x] Include sample page displays on start-up with CH headers, CH footers and GOV_UK error flows
 - [x] Include sample page displays on start-up with CH headers, CH footers and GOV_UK error flows
 - [ ] Bump up test coverage to meet set thresholds
-- [ ] Resolve all vulnerability warnings and errors flagged by `npm audit`
 - [ ] Upgrade to Node v18 at appropriate time
+- [ ] Resolve all vulnerability warnings and errors flagged by `npm audit`
+- [ ] Add OWASP's `dependency-check` to detect publicly disclosed vulnerabilities contained within dependencies
 - [ ] Resolve the `ESLINT_LEGACY_OBJECT_REST_SPREAD` deprecation warning when linting
 - [ ] Squelch SASS compilation deprecation warnings coming from the `govuk-frontend` toolkit. These deprecation warnings are a known issue [here](https://github.com/alphagov/govuk-frontend/issues/2238).
